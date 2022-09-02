@@ -1,14 +1,15 @@
+import React from "react";
+
 interface InputFormProps {
   id: string;
   type: "text" | "password" | "email";
   label: string;
   placeholder?: string;
-  value?: string;
   error?: boolean;
 }
 
 export const InputForm = (props: InputFormProps) => {
-  const { label, id, value, placeholder, type, error = false } = props;
+  const { label, id, placeholder, type, error = false, ...field } = props;
 
   const handleStyle = () => {
     switch (error) {
@@ -29,25 +30,8 @@ export const InputForm = (props: InputFormProps) => {
         id={id}
         placeholder={placeholder}
         className={handleStyle()}
+        {...field}
       />
     </div>
   );
 };
-
-/**
- *     <label
-      className="transition-all relative block p-2 border-2 border-gray-100 hover:border-yellow-400 rounded-lg"
-      htmlFor="name"
-    >
-      <input
-        className="w-full px-0 pt-3.5 pb-0 pl-2 text-sm placeholder-transparent border-none focus:ring-0 peer"
-        id="name"
-        type="password"
-        placeholder="Name"
-      />
-
-      <span className="absolute text-xs font-medium text-gray-500 transition-all left-3 peer-focus:text-xs peer-focus:top-1 peer-focus:translate-y-0 peer-placeholder-shown:top-1/2 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:text-sm">
-        {label}
-      </span>
-    </label>
- */
