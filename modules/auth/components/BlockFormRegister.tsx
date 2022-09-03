@@ -2,19 +2,40 @@ import { useForm, Controller } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 
+import { AiFillCheckCircle } from "react-icons/ai";
+import { MdError } from "react-icons/md";
+
 import { ButtonForm } from "../../form/components/ButtonForm";
 import { InputForm } from "../../form/components/InputForm";
 
 const schema = yup
   .object({
-    email: yup.string().required("Le champ email est obligatoire"),
-    firstName: yup.string().required("Le champ prénom est obligatoire"),
-    lastName: yup.string().required("Le champ nom de famille est obligatoire"),
+    email: yup
+      .string()
+      .email("Le format de l'email n'est pas bon")
+      .required("Le champ email est obligatoire"),
+    firstName: yup
+      .string()
+      .min(2, "Deux caractères minimum")
+      .required("Le champ prénom est obligatoire"),
+    lastName: yup
+      .string()
+      .min(2, "Deux caractères minimum")
+      .required("Le champ nom de famille est obligatoire"),
     birthDate: yup
       .date()
       .required("La date de naissance est obligatoire")
       .typeError("Le format de la date n'est pas bon"),
-    password: yup.string().required("Le champ password est obligatoire"),
+    password: yup
+      .string()
+      .test("isFormatCorrect", "Format du password incorrect", (value) => {
+        if (value !== undefined)
+          return /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/gm.test(
+            value
+          );
+        return false;
+      })
+      .required("Le champ password est obligatoire"),
   })
   .required();
 
@@ -22,6 +43,7 @@ export const BlockFormRegister = () => {
   const {
     handleSubmit,
     control,
+    watch,
     formState: { errors },
   } = useForm({
     defaultValues: {
@@ -36,6 +58,15 @@ export const BlockFormRegister = () => {
 
   const onSubmit = async (data: any) => {
     console.log(data);
+  };
+
+  const checkingFormatPassword = () => {
+    if (watch("password") !== "") {
+      return /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/gm.test(
+        watch("password")
+      );
+    }
+    return false;
   };
 
   return (
@@ -134,6 +165,22 @@ export const BlockFormRegister = () => {
             );
           }}
         />
+        <div
+          className={`w-fit flex space-x-2 items-center p-1 pl-4 pr-4 transition-all duration-200 rounded-full bg-gray-50 text-gray-600 ${
+            errors.password ? "bg-red-50" : ""
+          }`}
+        >
+          <span>
+            {checkingFormatPassword() ? (
+              <AiFillCheckCircle className="text-emerald-500" />
+            ) : (
+              <MdError className="text-red-500" />
+            )}
+          </span>
+          <span className="text-xs">
+            8 caractères, 1 majuscule, 1 minuscule, 1 chiffre
+          </span>
+        </div>
 
         <ButtonForm style="classic" type="submit" value={"S'enregistrer"} />
       </form>
