@@ -6,10 +6,11 @@ interface InputFormProps {
   label: string;
   placeholder?: string;
   error?: boolean;
+  field?: any;
 }
 
 export const InputForm = (props: InputFormProps) => {
-  const { label, id, placeholder, type, error = false, ...field } = props;
+  const { label, id, placeholder, type, error = false, field } = props;
 
   const handleStyle = () => {
     switch (error) {

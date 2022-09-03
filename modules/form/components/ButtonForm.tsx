@@ -1,7 +1,5 @@
-import { ReactElement } from "react";
-
 interface ButtonFormProps {
-  value: string;
+  value: string | React.ReactNode;
   type: "submit" | "button" | "reset";
   style: "submit" | "classic" | "classic-alt";
   icon?: React.ReactNode;
@@ -26,7 +24,7 @@ export const ButtonForm = (props: ButtonFormProps) => {
   return (
     <div className="w-full relative">
       <span className="absolute top-2.5 left-2.5">{icon}</span>
-      <button type={type} className={handleStyle()}>
+      <button type={type} className={`flex justify-center ${handleStyle()}`}>
         {value}
       </button>
     </div>
