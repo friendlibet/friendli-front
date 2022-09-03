@@ -4,14 +4,12 @@ import * as yup from "yup";
 
 import { useRegister } from "../../../graphql/users/useRegister";
 
-import { AiFillCheckCircle } from "react-icons/ai";
-import { MdError } from "react-icons/md";
-
 import { ButtonForm } from "../../form/components/ButtonForm";
 import { InputForm } from "../../form/components/InputForm";
 import { LoadingSpinner } from "./LoadingSpinner";
 import { Notification } from "../../common/Notification";
 import { useEffect } from "react";
+import { CheckingPassword } from "../../form/components/CheckingPassword";
 
 const schema = yup
   .object({
@@ -78,16 +76,6 @@ export const BlockFormRegister = () => {
         birthDate: data.birthDate,
       },
     });
-  };
-
-  //   Composant à faire
-  const checkingFormatPassword = () => {
-    if (watch("password") !== "") {
-      return /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/gm.test(
-        watch("password")
-      );
-    }
-    return false;
   };
 
   return (
@@ -203,23 +191,10 @@ export const BlockFormRegister = () => {
           }}
         />
 
-        {/* Composant à faire */}
-        <div
-          className={`w-fit flex space-x-2 items-center p-1 pl-4 pr-4 transition-all duration-200 rounded-full bg-gray-50 text-gray-600 ${
-            errors.password ? "bg-red-50" : ""
-          }`}
-        >
-          <span>
-            {checkingFormatPassword() ? (
-              <AiFillCheckCircle className="text-emerald-500" />
-            ) : (
-              <MdError className="text-red-500" />
-            )}
-          </span>
-          <span className="text-xs">
-            8 caractères, 1 majuscule, 1 minuscule, 1 chiffre
-          </span>
-        </div>
+        <CheckingPassword
+          errors={errors.password}
+          password={watch("password")}
+        />
 
         <ButtonForm
           style="classic"
