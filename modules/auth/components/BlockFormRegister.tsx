@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { useForm, Controller } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
@@ -8,8 +9,8 @@ import { ButtonForm } from "../../form/components/ButtonForm";
 import { InputForm } from "../../form/components/InputForm";
 import { LoadingSpinner } from "./LoadingSpinner";
 import { Notification } from "../../common/Notification";
-import { useEffect } from "react";
 import { CheckingPassword } from "../../form/components/CheckingPassword";
+import { TitleForm } from "../../form/components/TitleForm";
 
 const schema = yup
   .object({
@@ -80,11 +81,10 @@ export const BlockFormRegister = () => {
 
   return (
     <div className="transition-all duration-200 bg-white p-4 rounded-lg w-11/12 flex flex-col items-center hover:shadow-lg">
-      {/* Composant à faire  */}
-      <p className="p-4 text-center text-sm">
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Vel animi Lorem
-        ipsum dolor sit amet.
-      </p>
+      <TitleForm
+        text="Lorem ipsum dolor sit amet consectetur adipisicing elit. Vel animi Lorem
+        ipsum dolor sit amet."
+      />
       <div
         className={`transition-all absolute w-9/12 ${
           error?.graphQLErrors || data?.signInUser ? "top-20" : "top-0"

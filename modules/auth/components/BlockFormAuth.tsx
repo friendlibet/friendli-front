@@ -2,10 +2,11 @@ import { useEffect } from "react";
 import { useForm, Controller } from "react-hook-form";
 
 import { useSignIn } from "../../../graphql/users/useSignIn";
-import { Notification } from "../../common/Notification";
 
+import { Notification } from "../../common/Notification";
 import { ButtonForm } from "../../form/components/ButtonForm";
 import { InputForm } from "../../form/components/InputForm";
+import { TitleForm } from "../../form/components/TitleForm";
 import { LoadingSpinner } from "./LoadingSpinner";
 
 export const BlockFormAuth = () => {
@@ -32,10 +33,10 @@ export const BlockFormAuth = () => {
 
   return (
     <div className="transition-all duration-200 bg-white p-4 rounded-lg w-11/12 flex flex-col items-center hover:shadow-lg">
-      <p className="p-4 text-center text-sm">
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Vel animi Lorem
-        ipsum dolor sit amet.
-      </p>
+      <TitleForm
+        text="Lorem ipsum dolor sit amet consectetur adipisicing elit. Vel animi Lorem
+        ipsum dolor sit amet."
+      />
 
       <div
         className={`transition-all absolute w-9/12 ${
