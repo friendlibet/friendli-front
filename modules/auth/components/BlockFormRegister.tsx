@@ -60,6 +60,7 @@ export const BlockFormRegister = () => {
     console.log(data);
   };
 
+  //   Composant à faire
   const checkingFormatPassword = () => {
     if (watch("password") !== "") {
       return /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/gm.test(
@@ -71,6 +72,7 @@ export const BlockFormRegister = () => {
 
   return (
     <div className="transition-all duration-200 bg-white p-4 rounded-lg w-11/12 flex flex-col items-center hover:shadow-lg">
+      {/* Composant à faire  */}
       <p className="p-4 text-center text-sm">
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Vel animi Lorem
         ipsum dolor sit amet.
@@ -165,6 +167,8 @@ export const BlockFormRegister = () => {
             );
           }}
         />
+
+        {/* Composant à faire */}
         <div
           className={`w-fit flex space-x-2 items-center p-1 pl-4 pr-4 transition-all duration-200 rounded-full bg-gray-50 text-gray-600 ${
             errors.password ? "bg-red-50" : ""
