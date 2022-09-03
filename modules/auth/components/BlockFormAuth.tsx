@@ -99,13 +99,3 @@ export const BlockFormAuth = () => {
     </div>
   );
 };
-
-/**
- * Schema reacthookform + yup
- */
-// const form = useFormWithSchemaBuilder((yup) =>
-//   yup.object({
-//     email: yup.string().required(),
-//     password: yup.string().required(),
-//   })
-// );
