@@ -11,6 +11,7 @@ import { LoadingSpinner } from "./LoadingSpinner";
 import { Notification } from "../../common/Notification";
 import { CheckingPassword } from "../../form/components/CheckingPassword";
 import { TitleForm } from "../../form/components/TitleForm";
+import Router from "next/router";
 
 const schema = yup
   .object({
@@ -44,11 +45,17 @@ const schema = yup
   .required();
 
 export const BlockFormRegister = () => {
+  const router = Router;
+
   const [registerUser, { data, loading, error, reset }] = useRegister();
 
   useEffect(() => {
     if (error !== undefined) setTimeout(() => reset(), 2000);
-    if (data !== undefined) setTimeout(() => reset(), 2000);
+    if (data !== undefined)
+      setTimeout(() => {
+        reset();
+        router.push("/auth/");
+      }, 2500);
   }, [error, data]);
 
   const {
@@ -68,7 +75,7 @@ export const BlockFormRegister = () => {
   });
 
   const onSubmit = async (data: any) => {
-    const response = await registerUser({
+    await registerUser({
       variables: {
         email: data.email,
         password: data.password,
@@ -87,13 +94,13 @@ export const BlockFormRegister = () => {
       />
       <div
         className={`transition-all absolute w-9/12 ${
-          error?.graphQLErrors || data?.signInUser ? "top-20" : "top-0"
+          error?.graphQLErrors || data?.createUser ? "top-20" : "top-0"
         }`}
       >
         {error?.graphQLErrors.map(({ message }, i) => (
           <Notification key={i} value={message} type="error" />
         ))}
-        {data?.signInUser && (
+        {data?.createUser && (
           <Notification
             value="Vous allez être redirigé dans un instant"
             type="success"
