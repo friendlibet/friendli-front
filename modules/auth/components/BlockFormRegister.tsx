@@ -90,7 +90,7 @@ export const BlockFormRegister = () => {
 
   return (
     <div className="transition-all duration-200 bg-white p-4 rounded-lg w-11/12 flex flex-col items-center hover:shadow-lg">
-      <TitleForm text={t("header")} />
+      <TitleForm text={t("register.title")} />
       <div
         className={`transition-all absolute w-9/12 ${
           error?.graphQLErrors || data?.createUser ? "top-20" : "top-0"
@@ -120,8 +120,8 @@ export const BlockFormRegister = () => {
               <InputForm
                 id="email"
                 type="email"
-                label="Email"
-                placeholder="Email"
+                label={t("register.form.inputs.labelEmail")}
+                placeholder={t("register.form.inputs.labelEmail")}
                 field={field}
                 errors={errors}
               />
@@ -137,8 +137,8 @@ export const BlockFormRegister = () => {
               <InputForm
                 id="firstName"
                 type="text"
-                label="Prénom"
-                placeholder="Prénom"
+                label={t("register.form.inputs.labelFirstName")}
+                placeholder={t("register.form.inputs.labelFirstName")}
                 field={field}
                 errors={errors}
               />
@@ -154,8 +154,8 @@ export const BlockFormRegister = () => {
               <InputForm
                 id="lastName"
                 type="text"
-                label="Nom"
-                placeholder="Nom"
+                label={t("register.form.inputs.labelLastName")}
+                placeholder={t("register.form.inputs.labelLastName")}
                 field={field}
                 errors={errors}
               />
@@ -171,8 +171,8 @@ export const BlockFormRegister = () => {
               <InputForm
                 id="birthDate"
                 type="date"
-                label="Date de naissance"
-                placeholder="Date de naissance"
+                label={t("register.form.inputs.labelBirthDate")}
+                placeholder={t("register.form.inputs.labelBirthDate")}
                 field={field}
                 errors={errors}
               />
@@ -188,8 +188,8 @@ export const BlockFormRegister = () => {
               <InputForm
                 id="password"
                 type="password"
-                label="Password"
-                placeholder="Password"
+                label={t("register.form.inputs.labelPassword")}
+                placeholder={t("register.form.inputs.labelPassword")}
                 field={field}
                 errors={errors}
               />
@@ -198,6 +198,7 @@ export const BlockFormRegister = () => {
         />
 
         <CheckingPassword
+          text={t("register.form.informations.password")}
           errors={errors.password}
           password={watch("password")}
         />
@@ -205,7 +206,9 @@ export const BlockFormRegister = () => {
         <ButtonForm
           style="classic"
           type="submit"
-          value={loading ? <LoadingSpinner /> : "S'enregistrer"}
+          value={
+            loading ? <LoadingSpinner /> : t("register.form.buttons.submit")
+          }
         />
       </form>
     </div>

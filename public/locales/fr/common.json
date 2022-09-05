@@ -16,6 +16,25 @@
     }
   },
   "register": {
-    "title": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus quam architecto tempore delectus eius dolore vel omnis, esse iusto perspiciatis."
+    "title": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus quam architecto tempore delectus eius dolore vel omnis, esse iusto perspiciatis.",
+    "form": {
+      "inputs": {
+        "labelEmail": "Email",
+        "labelPassword": "Mot de passe",
+        "labelFirstName": "Prénom",
+        "labelLastName": "Nom",
+        "labelBirthDate": "Date de naissance"
+      },
+      "informations": {
+        "password": "8 caractères, 1 majuscule, 1 minuscule, 1 chiffre"
+      },
+      "buttons": {
+        "submit": "S'enregistrer"
+      }
+    },
+    "getSignIn": {
+      "title": "T'as déjà un compte ?",
+      "link": "Connecte toi"
+    }
   }
 }
