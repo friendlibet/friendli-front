@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { useForm, Controller } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
+import { useTranslation } from "next-i18next";
 
 import { useRegister } from "../../../graphql/users/useRegister";
 
@@ -45,6 +46,7 @@ const schema = yup
   .required();
 
 export const BlockFormRegister = () => {
+  const { t } = useTranslation("common");
   const router = Router;
 
   const [registerUser, { data, loading, error, reset }] = useRegister();
@@ -88,10 +90,7 @@ export const BlockFormRegister = () => {
 
   return (
     <div className="transition-all duration-200 bg-white p-4 rounded-lg w-11/12 flex flex-col items-center hover:shadow-lg">
-      <TitleForm
-        text="Lorem ipsum dolor sit amet consectetur adipisicing elit. Vel animi Lorem
-        ipsum dolor sit amet."
-      />
+      <TitleForm text={t("header")} />
       <div
         className={`transition-all absolute w-9/12 ${
           error?.graphQLErrors || data?.createUser ? "top-20" : "top-0"

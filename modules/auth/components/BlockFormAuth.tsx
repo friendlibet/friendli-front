@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { useForm, Controller } from "react-hook-form";
+import { useTranslation } from "next-i18next";
 
 import { useSignIn } from "../../../graphql/users/useSignIn";
 
@@ -10,6 +11,7 @@ import { TitleForm } from "../../form/components/TitleForm";
 import { LoadingSpinner } from "./LoadingSpinner";
 
 export const BlockFormAuth = () => {
+  const { t } = useTranslation("common");
   const [signIn, { data, loading, error, reset }] = useSignIn();
 
   const { handleSubmit, control } = useForm({
@@ -33,10 +35,7 @@ export const BlockFormAuth = () => {
 
   return (
     <div className="transition-all duration-200 bg-white p-4 rounded-lg w-11/12 flex flex-col items-center hover:shadow-lg">
-      <TitleForm
-        text="Lorem ipsum dolor sit amet consectetur adipisicing elit. Vel animi Lorem
-        ipsum dolor sit amet."
-      />
+      <TitleForm text={t("signIn.title")} />
 
       <div
         className={`transition-all absolute w-9/12 ${
@@ -67,8 +66,8 @@ export const BlockFormAuth = () => {
               <InputForm
                 id="email"
                 type="email"
-                label="Email"
-                placeholder="Email"
+                label={t("signIn.form.inputs.labelEmail")}
+                placeholder={t("signIn.form.inputs.labelEmail")}
                 field={field}
               />
             );
@@ -83,8 +82,8 @@ export const BlockFormAuth = () => {
               <InputForm
                 id="password"
                 type="password"
-                label="Password"
-                placeholder="Password"
+                label={t("signIn.form.inputs.labelPassword")}
+                placeholder={t("signIn.form.inputs.labelPassword")}
                 field={field}
               />
             );
@@ -94,7 +93,7 @@ export const BlockFormAuth = () => {
         <ButtonForm
           style="classic"
           type="submit"
-          value={loading ? <LoadingSpinner /> : "Connection"}
+          value={loading ? <LoadingSpinner /> : t("signIn.form.buttons.submit")}
         />
       </form>
     </div>

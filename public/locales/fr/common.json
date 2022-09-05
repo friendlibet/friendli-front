@@ -1,0 +1,21 @@
+{
+  "signIn": {
+    "title": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus quam architecto tempore delectus eius dolore vel omnis, esse iusto perspiciatis.",
+    "form": {
+      "inputs": {
+        "labelEmail": "Email",
+        "labelPassword": "Mot de passe"
+      },
+      "buttons": {
+        "submit": "Connection"
+      }
+    },
+    "getRegister": {
+      "title": "Toujours pas de compte ?",
+      "link": "S'enregistrer"
+    }
+  },
+  "register": {
+    "title": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus quam architecto tempore delectus eius dolore vel omnis, esse iusto perspiciatis."
+  }
+}
