@@ -101,7 +101,7 @@ export const BlockFormRegister = () => {
         ))}
         {data?.createUser && (
           <Notification
-            value="Vous allez être redirigé dans un instant"
+            value={t("notfications.success.redirection")}
             type="success"
           />
         )}
@@ -128,23 +128,7 @@ export const BlockFormRegister = () => {
             );
           }}
         />
-        <Controller
-          name="firstName"
-          control={control}
-          rules={{ required: true }}
-          render={({ field }) => {
-            return (
-              <InputForm
-                id="firstName"
-                type="text"
-                label={t("register.form.inputs.labelFirstName")}
-                placeholder={t("register.form.inputs.labelFirstName")}
-                field={field}
-                errors={errors}
-              />
-            );
-          }}
-        />
+
         <Controller
           name="lastName"
           control={control}
@@ -156,6 +140,23 @@ export const BlockFormRegister = () => {
                 type="text"
                 label={t("register.form.inputs.labelLastName")}
                 placeholder={t("register.form.inputs.labelLastName")}
+                field={field}
+                errors={errors}
+              />
+            );
+          }}
+        />
+        <Controller
+          name="firstName"
+          control={control}
+          rules={{ required: true }}
+          render={({ field }) => {
+            return (
+              <InputForm
+                id="firstName"
+                type="text"
+                label={t("register.form.inputs.labelFirstName")}
+                placeholder={t("register.form.inputs.labelFirstName")}
                 field={field}
                 errors={errors}
               />
@@ -204,7 +205,7 @@ export const BlockFormRegister = () => {
         />
 
         <ButtonForm
-          style="classic"
+          style="submit"
           type="submit"
           value={
             loading ? <LoadingSpinner /> : t("register.form.buttons.submit")

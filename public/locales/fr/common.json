@@ -7,7 +7,7 @@
         "labelPassword": "Mot de passe"
       },
       "buttons": {
-        "submit": "Connection"
+        "submit": "Connexion"
       }
     },
     "getRegister": {
@@ -35,6 +35,11 @@
     "getSignIn": {
       "title": "T'as déjà un compte ?",
       "link": "Connecte toi"
+    }
+  },
+  "notifications": {
+    "success": {
+      "redirection": "Vous allez être redirigé dans un instant"
     }
   }
 }
