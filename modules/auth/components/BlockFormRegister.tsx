@@ -205,7 +205,7 @@ export const BlockFormRegister = () => {
         />
 
         <ButtonForm
-          style="submit"
+          style="classic"
           type="submit"
           value={
             loading ? <LoadingSpinner /> : t("register.form.buttons.submit")

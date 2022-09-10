@@ -6,7 +6,8 @@ import Link from "next/link";
 
 import { BlockFormAuth } from "../../modules/auth/components/BlockFormAuth";
 
-import { BiHelpCircle } from "react-icons/bi";
+import { BiRuler } from "react-icons/bi";
+import { FaRuler } from "react-icons/fa";
 import friendliBetLogo from "../../public/friendliBet_logo.png";
 import { ButtonIcon } from "../../modules/auth/components/ButtonIcon";
 import React from "react";
@@ -28,17 +29,17 @@ const SignInPage: NextPage = () => {
   };
 
   return (
-    <div className="relative bg-[#ffde59] min-h-screen w-full flex flex-col items-center justify-center">
+    <div className="relative bg-[#2B59C3] min-h-screen w-full flex flex-col items-center justify-center">
       <PopUpHelp id="help-popup" />
-      <ButtonIcon icon={<BiHelpCircle />} func={showPopUp} />
+      <ButtonIcon icon={<FaRuler />} func={showPopUp} />
       <div className="w-1/3 mb-10">
         <Image src={friendliBetLogo} alt="friendliBet Logo" />
       </div>
       <BlockFormAuth />
-      <p className="mt-6 text-sm">
+      <p className="mt-6 text-sm text-blue-100">
         {t("signIn.getRegister.title")}{" "}
         <Link href="/auth/register">
-          <a className="font-medium text-black underline hover:no-underline hover:text-slate-800">
+          <a className="font-medium text-white underline hover:no-underline hover:text-yellow-300">
             {t("signIn.getRegister.link")}
           </a>
         </Link>

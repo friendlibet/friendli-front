@@ -89,12 +89,14 @@ export const BlockFormAuth = () => {
             );
           }}
         />
-
         <ButtonForm
           style="classic"
           type="submit"
           value={loading ? <LoadingSpinner /> : t("signIn.form.buttons.submit")}
         />
+        <span className="text-sm text-gray-800 p-2 hover:underline cursor-pointer">
+          Mot de passe oublié ?
+        </span>
       </form>
     </div>
   );
