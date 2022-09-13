@@ -1,16 +1,17 @@
 import type { NextPage } from "next";
 import Router from "next/router";
-import { useEffect } from "react";
+import { Footer } from "../modules/app/components/Footer";
+import { Header } from "../modules/app/components/Header";
 
 const Home: NextPage = () => {
   const router = Router;
 
-  useEffect(() => {
-    const isAuth = localStorage.getItem("token") || null;
-    if (!isAuth) router.push("/auth");
-  }, []);
-
-  return <div>{process.env.NEXT_PUBLIC_API_ROUTER}</div>;
+  return (
+    <>
+      <Header />
+      <Footer />
+    </>
+  );
 };
 
 export default Home;

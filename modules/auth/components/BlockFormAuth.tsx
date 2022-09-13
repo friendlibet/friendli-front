@@ -9,10 +9,12 @@ import { ButtonForm } from "../../form/components/ButtonForm";
 import { InputForm } from "../../form/components/InputForm";
 import { TitleForm } from "../../form/components/TitleForm";
 import { LoadingSpinner } from "./LoadingSpinner";
+import Router from "next/router";
 
 export const BlockFormAuth = () => {
   const { t } = useTranslation("common");
   const [signIn, { data, loading, error, reset }] = useSignIn();
+  const router = Router;
 
   const { handleSubmit, control } = useForm({
     defaultValues: {
@@ -26,6 +28,7 @@ export const BlockFormAuth = () => {
       variables: { email: data.email, password: data.password },
     });
     localStorage.setItem("token", response.data.signInUser);
+    router.push("/");
   };
 
   useEffect(() => {

@@ -9,11 +9,11 @@ const GET_USER_INFO = gql`
   }
 `;
 
-export const useGetInfo = () => {
+export const useGetInfo = (token: any) => {
   return useQuery(GET_USER_INFO, {
     context: {
       headers: {
-        Authorization: "Bearer token",
+        Authorization: `Bearer ${token}`,
       },
     },
   });
