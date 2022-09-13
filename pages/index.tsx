@@ -12,8 +12,8 @@ const Home: NextPage = () => {
   const router = Router;
 
   return (
-    <div className="flex justify-center bg-gray-100 min-h-screen w-full">
-      <div className="flex flex-col w-full md:w-3/4 bg-white border-0 md:border-l-2 md:border-r-2 border-yellow-400">
+    <div className="flex justify-center bg-gray-800 min-h-screen w-full">
+      <div className="flex flex-col w-full md:w-3/4 bg-white">
         <Header />
         <div className="p-6">
           <BlockHomeApp />

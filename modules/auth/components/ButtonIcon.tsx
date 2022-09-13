@@ -6,9 +6,6 @@ interface ButtonIconProps {
 export const ButtonIcon = (props: ButtonIconProps) => {
   const { icon, func } = props;
 
-  /**
-   * text règle
-   */
   return (
     <div className="absolute top-10 right-10 z-20 flex flex-col">
       <button

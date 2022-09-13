@@ -5,13 +5,15 @@ import { ButtonIconsPage } from "../common/ButtonIconsPage";
 import { useWindowResize } from "../common/hooks/useWindowResize";
 import { useTranslation } from "next-i18next";
 
+import { FaLayerGroup } from "react-icons/fa";
+
 export const BlockHomeApp = () => {
   const { t } = useTranslation("common");
   const windowSize = useWindowResize();
 
   return (
     <div className="flex flex-col">
-      <TitleApp title={t("home.title")} />
+      <TitleApp title={t("home.title")} icon={<FaLayerGroup />} />
       <div className="mt-6 flex items-center">
         <ButtonIconsPage
           func={() => console.log("test")}
