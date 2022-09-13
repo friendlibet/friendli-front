@@ -12,18 +12,24 @@ import { GiHamburgerMenu, GiSoccerBall } from "react-icons/gi";
 import { FaSignOutAlt } from "react-icons/fa";
 import { AiOutlineUser } from "react-icons/ai";
 import { FaLayerGroup } from "react-icons/fa";
+import { useGetInfo } from "../../../graphql/users/useGetInfo";
 
 interface HeaderProps {}
 
 export const Header = (props: HeaderProps) => {
   const [toggle, setToggle] = useState<boolean>(false);
+  const [userInfo, setUserInfo] = useState<any>();
   const windowSize = useWindowResize();
   const router = Router;
+  const getUserInfo = useGetInfo();
 
   useEffect(() => {
     const isAuth = localStorage.getItem("token") || null;
     if (!isAuth) router.push("/auth");
-  }, []);
+    else {
+      if (getUserInfo.data !== undefined) setUserInfo(getUserInfo.data.getUser);
+    }
+  }, [getUserInfo]);
 
   return (
     <header className="flex items-center justify-between p-4 bg-[#2B59C3] border-b-2 border-blue-500 h-32">
@@ -75,7 +81,7 @@ export const Header = (props: HeaderProps) => {
           </ul>
         </nav>
       )}
-      <div className="hidden md:flex">PROFIL</div>
+      <div className="hidden md:flex">{userInfo?.firstName}</div>
     </header>
   );
 };

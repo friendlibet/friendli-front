@@ -37,6 +37,12 @@
       "link": "Connecte toi"
     }
   },
+  "home": {
+    "title": "Mes Groupes",
+    "buttons": {
+      "addOneGroup": "Créer un groupe"
+    }
+  },
   "notifications": {
     "success": {
       "redirection": "Vous allez être redirigé dans un instant"
