@@ -6,8 +6,8 @@ export const handleLogout = () => {
   const isAuth = localStorage.getItem("token");
   if (isAuth !== undefined) {
     localStorage.removeItem("token");
-    router.push("/");
     setTimeout(() => {
+      router.push("/");
       window.location.reload();
     }, 1000);
   }

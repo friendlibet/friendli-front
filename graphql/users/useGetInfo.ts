@@ -6,6 +6,8 @@ const GET_USER_INFO = gql`
       id
       firstName
       lastName
+      email
+      avatar
     }
   }
 `;
