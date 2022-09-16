@@ -10,14 +10,15 @@ import { useWindowResize } from "../../common/hooks/useWindowResize";
 
 import { GiHamburgerMenu, GiSoccerBall } from "react-icons/gi";
 import { FaSignOutAlt } from "react-icons/fa";
-import { AiOutlineUser } from "react-icons/ai";
 import { FaLayerGroup } from "react-icons/fa";
 import { useGetInfo } from "../../../graphql/users/useGetInfo";
 import { useDispatch, useSelector } from "react-redux";
+import { useTranslation } from "next-i18next";
 
 interface HeaderProps {}
 
 export const Header = (props: HeaderProps) => {
+  const { t } = useTranslation("common");
   const [toggle, setToggle] = useState<boolean>(false);
   const dispatch = useDispatch();
   const { userInfo } = useSelector((state: any) => ({
@@ -69,15 +70,15 @@ export const Header = (props: HeaderProps) => {
                     height="17"
                     className="rounded-full"
                   />
-                  <span>Mon profil</span>
+                  <span>{t("navigation.myProfil")}</span>
                 </a>
               </Link>
             </li>
             <li className="p-2 hover:bg-blue-500 hover:text-white">
-              <Link href="/groups">
+              <Link href="/">
                 <a className="flex space-x-2 items-center">
                   <FaLayerGroup className="text-white" />
-                  <span>Groupes</span>
+                  <span>{t("navigation.groups")}</span>
                 </a>
               </Link>
             </li>
@@ -85,7 +86,7 @@ export const Header = (props: HeaderProps) => {
               <Link href="/results">
                 <a className="flex space-x-2 items-center">
                   <GiSoccerBall className="text-white" />
-                  <span>Résultats</span>
+                  <span>{t("navigation.results")}</span>
                 </a>
               </Link>
             </li>
@@ -95,7 +96,7 @@ export const Header = (props: HeaderProps) => {
                 className="cursor-pointer flex space-x-2 items-center"
               >
                 <FaSignOutAlt className="text-red-500" />
-                <span>Déconnexion</span>
+                <span>{t("navigation.logout")}</span>
               </a>
             </li>
           </ul>

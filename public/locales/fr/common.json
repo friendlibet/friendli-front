@@ -37,14 +37,36 @@
       "link": "Connecte toi"
     }
   },
+  "navigation": {
+    "myProfil": "Mon profil",
+    "groups": "Groupes",
+    "results": "Résultats",
+    "logout": "Déconnexion"
+  },
   "home": {
     "title": "Mes Groupes",
     "buttons": {
       "addOneGroup": "Créer un groupe"
     }
   },
+  "users": {
+    "title": "Hello,",
+    "buttons": {
+      "editProfil": "Editer mon profil",
+      "deleteProfil": "Supprimer mon compte"
+    }
+  },
+  "groups": {
+    "add": {
+      "title": "Créer mon groupe"
+    },
+    "form": {
+      "submit": "Créer"
+    }
+  },
   "notifications": {
     "success": {
+      "createGroup": "Le groupe a bien été créé",
       "redirection": "Vous allez être redirigé dans un instant"
     }
   }

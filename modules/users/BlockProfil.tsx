@@ -4,14 +4,20 @@ import { TitleApp } from "../common/TitleApp";
 
 import { FaHandPeace } from "react-icons/fa";
 import { ButtonForm } from "../form/components/ButtonForm";
+import { useTranslation } from "next-i18next";
 
 export const BlockProfil = () => {
+  const { t } = useTranslation("common");
+
   const { userInfo } = useSelector((state: any) => ({
     ...state.userReducer,
   }));
   return (
     <div className="flex flex-col">
-      <TitleApp title={`Hello, ${userInfo.firstName}`} icon={<FaHandPeace />} />
+      <TitleApp
+        title={`${t("users.title")} ${userInfo.firstName}`}
+        icon={<FaHandPeace />}
+      />
       <div className="mt-6 flex items-center">
         <div className="p-4 flex flex-col items-center justify-center w-full">
           <Image
@@ -26,14 +32,14 @@ export const BlockProfil = () => {
               <ButtonForm
                 style="classic"
                 type="button"
-                value="Edit mon profil"
+                value={t("users.buttons.editProfil")}
               />
             </li>
             <li className="flex w-full">
               <ButtonForm
                 style="danger"
                 type="button"
-                value="Supprimer mon compte"
+                value={t("users.buttons.deleteProfil")}
                 func={() => console.log("okokook")}
               />
             </li>

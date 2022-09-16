@@ -101,7 +101,7 @@ export const BlockFormRegister = () => {
         ))}
         {data?.createUser && (
           <Notification
-            value={t("notfications.success.redirection")}
+            value={t("notifications.success.redirection")}
             type="success"
           />
         )}
