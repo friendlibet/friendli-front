@@ -63,13 +63,15 @@ export const Header = (props: HeaderProps) => {
             <li className="flex p-2 md:hidden hover:bg-blue-500 hover:text-white">
               <Link href="/profil">
                 <a className="flex space-x-2 items-center">
-                  <Image
-                    src={userInfo.avatar}
-                    alt={`${userInfo.firstname} image avatar`}
-                    width="17"
-                    height="17"
-                    className="rounded-full"
-                  />
+                  {userInfo.avatar !== "" && (
+                    <Image
+                      src={userInfo?.avatar}
+                      alt={`${userInfo?.firstname} image avatar`}
+                      width="17"
+                      height="17"
+                      className="rounded-full"
+                    />
+                  )}
                   <span>{t("navigation.myProfil")}</span>
                 </a>
               </Link>

@@ -11,6 +11,7 @@ import { LoadingSpinner } from "../auth/components/LoadingSpinner";
 import { Notification } from "../common/Notification";
 import { useEffect } from "react";
 import Router from "next/router";
+import { useDispatch } from "react-redux";
 
 const schema = yup
   .object({
@@ -24,6 +25,7 @@ const schema = yup
   .required();
 
 export const BlockGroupAdd = () => {
+  const dispatch = useDispatch();
   const [createGroup, { data, loading, error, reset }] = useCreateGroup();
   const { t } = useTranslation("common");
   const router = Router;
@@ -31,6 +33,14 @@ export const BlockGroupAdd = () => {
     if (error !== undefined) setTimeout(() => reset(), 2000);
     if (data !== undefined)
       setTimeout(() => {
+        dispatch({
+          type: "ADDGROUP",
+          payload: {
+            id: data.createGroup.id,
+            name: data.createGroup.name,
+            description: data.createGroup.description,
+          },
+        });
         reset();
         router.push("/");
       }, 1000);
@@ -52,7 +62,7 @@ export const BlockGroupAdd = () => {
   });
 
   const onSubmit = async (data: any) => {
-    await createGroup({
+    const group: any = await createGroup({
       variables: {
         name: data.name,
         password: data.password,

@@ -15,7 +15,9 @@ const CREATE_GROUP = gql`
         championshipId: $championshipId
       }
     ) {
+      id
       name
+      description
     }
   }
 `;
