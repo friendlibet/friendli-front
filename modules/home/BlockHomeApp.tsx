@@ -23,6 +23,12 @@ export const BlockHomeApp = () => {
     ...state.groupReducer,
   }));
 
+  interface GroupProps {
+    id: string;
+    name: string;
+    description: string;
+  }
+
   useEffect(() => {
     if (getUserGroups.data !== undefined && groups.length === 0) {
       dispatch({
@@ -47,7 +53,9 @@ export const BlockHomeApp = () => {
       </div>
       <div className="mt-6">
         {groups.length > 0 &&
-          groups.map((el: any) => <CardGroup key={el.id} name={el.name} />)}
+          groups.map((el: GroupProps) => (
+            <CardGroup key={el.id} name={el.name} />
+          ))}
       </div>
     </div>
   );
