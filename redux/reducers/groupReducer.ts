@@ -13,7 +13,6 @@ const groupReducer = (state = INITIAL_STATE, action: any) => {
     case "ADDGROUP": {
       const newArray: any = [...state.groups];
       newArray.push(action.payload);
-      console.log("newArray", newArray);
       return {
         ...state,
         groups: newArray,

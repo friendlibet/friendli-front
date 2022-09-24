@@ -1,17 +1,21 @@
-import { TitleApp } from "../common/TitleApp";
-import * as yup from "yup";
-import { yupResolver } from "@hookform/resolvers/yup";
-import { MdOutlineAddCircle } from "react-icons/md";
-import { Controller, useForm } from "react-hook-form";
-import { useTranslation } from "next-i18next";
-import { InputForm } from "../form/components/InputForm";
-import { ButtonForm } from "../form/components/ButtonForm";
-import { useCreateGroup } from "../../graphql/groups/useCreateGroup";
-import { LoadingSpinner } from "../auth/components/LoadingSpinner";
-import { Notification } from "../common/Notification";
 import { useEffect } from "react";
 import Router from "next/router";
 import { useDispatch } from "react-redux";
+import * as yup from "yup";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { Controller, useForm } from "react-hook-form";
+import { useTranslation } from "next-i18next";
+
+import { useCreateGroup } from "../../graphql/groups/useCreateGroup";
+import { useGetChampionships } from "../../graphql/championships/useGetChampionships";
+
+import { TitleApp } from "../common/TitleApp";
+import { InputForm } from "../form/components/InputForm";
+import { ButtonForm } from "../form/components/ButtonForm";
+import { LoadingSpinner } from "../auth/components/LoadingSpinner";
+import { Notification } from "../common/Notification";
+
+import { MdOutlineAddCircle } from "react-icons/md";
 
 const schema = yup
   .object({
@@ -27,6 +31,7 @@ const schema = yup
 export const BlockGroupAdd = () => {
   const dispatch = useDispatch();
   const [createGroup, { data, loading, error, reset }] = useCreateGroup();
+  const championships = useGetChampionships();
   const { t } = useTranslation("common");
   const router = Router;
   useEffect(() => {
@@ -128,6 +133,14 @@ export const BlockGroupAdd = () => {
               );
             }}
           />
+          <select className="p-2 rounded-full bg-white border border-gray-200 outline-none text-gray-700">
+            {championships &&
+              championships.data?.getChampionships.map((el: any) => (
+                <option key={el.id} value={el.id} className="p-2">
+                  {el.name}
+                </option>
+              ))}
+          </select>
           <Controller
             name="description"
             control={control}

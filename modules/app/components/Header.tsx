@@ -106,7 +106,7 @@ export const Header = (props: HeaderProps) => {
       )}
       <div className="hidden md:flex md:rounded-full md:border-2 md:p-1 md:border-blue-400">
         <Image
-          src={userInfo.avatar}
+          src={userInfo ? userInfo.avatar : ""}
           alt={`${userInfo.firstname} image avatar`}
           width="70"
           height="70"
