@@ -1,0 +1,73 @@
+{
+  "signIn": {
+    "title": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus quam architecto tempore delectus eius dolore vel omnis, esse iusto perspiciatis.",
+    "form": {
+      "inputs": {
+        "labelEmail": "Email",
+        "labelPassword": "Mot de passe"
+      },
+      "buttons": {
+        "submit": "Connexion"
+      }
+    },
+    "getRegister": {
+      "title": "Toujours pas de compte ?",
+      "link": "S'enregistrer"
+    }
+  },
+  "register": {
+    "title": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus quam architecto tempore delectus eius dolore vel omnis, esse iusto perspiciatis.",
+    "form": {
+      "inputs": {
+        "labelEmail": "Email",
+        "labelPassword": "Mot de passe",
+        "labelFirstName": "Prénom",
+        "labelLastName": "Nom",
+        "labelBirthDate": "Date de naissance"
+      },
+      "informations": {
+        "password": "8 caractères, 1 majuscule, 1 minuscule, 1 chiffre"
+      },
+      "buttons": {
+        "submit": "S'enregistrer"
+      }
+    },
+    "getSignIn": {
+      "title": "T'as déjà un compte ?",
+      "link": "Connecte toi"
+    }
+  },
+  "navigation": {
+    "myProfil": "Mon profil",
+    "groups": "Groupes",
+    "results": "Résultats",
+    "logout": "Déconnexion"
+  },
+  "home": {
+    "title": "Mes Groupes",
+    "buttons": {
+      "addOneGroup": "Créer un groupe"
+    }
+  },
+  "users": {
+    "title": "Hello,",
+    "buttons": {
+      "editProfil": "Editer mon profil",
+      "deleteProfil": "Supprimer mon compte"
+    }
+  },
+  "groups": {
+    "add": {
+      "title": "Créer mon groupe"
+    },
+    "form": {
+      "submit": "Créer"
+    }
+  },
+  "notifications": {
+    "success": {
+      "createGroup": "Le groupe a bien été créé",
+      "redirection": "Vous allez être redirigé dans un instant"
+    }
+  }
+}

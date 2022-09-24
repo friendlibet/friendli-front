@@ -5,11 +5,12 @@ import { checkingFormatPassword } from "../../../misc/checkingFormatPassword";
 
 interface CheckingPasswordProps {
   password: string;
+  text: string;
   errors?: FieldError;
 }
 
 export const CheckingPassword = (props: CheckingPasswordProps) => {
-  const { errors, password } = props;
+  const { text, errors, password } = props;
 
   return (
     <div
@@ -24,9 +25,7 @@ export const CheckingPassword = (props: CheckingPasswordProps) => {
           <MdError className="text-red-500" />
         )}
       </span>
-      <span className="text-xs">
-        8 caractères, 1 majuscule, 1 minuscule, 1 chiffre
-      </span>
+      <span className="text-xs">{text}</span>
     </div>
   );
 };

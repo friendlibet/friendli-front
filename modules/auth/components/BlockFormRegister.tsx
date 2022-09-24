@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { useForm, Controller } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
+import { useTranslation } from "next-i18next";
 
 import { useRegister } from "../../../graphql/users/useRegister";
 
@@ -11,6 +12,7 @@ import { LoadingSpinner } from "./LoadingSpinner";
 import { Notification } from "../../common/Notification";
 import { CheckingPassword } from "../../form/components/CheckingPassword";
 import { TitleForm } from "../../form/components/TitleForm";
+import Router from "next/router";
 
 const schema = yup
   .object({
@@ -44,11 +46,18 @@ const schema = yup
   .required();
 
 export const BlockFormRegister = () => {
+  const { t } = useTranslation("common");
+  const router = Router;
+
   const [registerUser, { data, loading, error, reset }] = useRegister();
 
   useEffect(() => {
     if (error !== undefined) setTimeout(() => reset(), 2000);
-    if (data !== undefined) setTimeout(() => reset(), 2000);
+    if (data !== undefined)
+      setTimeout(() => {
+        reset();
+        router.push("/auth/");
+      }, 2500);
   }, [error, data]);
 
   const {
@@ -68,7 +77,7 @@ export const BlockFormRegister = () => {
   });
 
   const onSubmit = async (data: any) => {
-    const response = await registerUser({
+    await registerUser({
       variables: {
         email: data.email,
         password: data.password,
@@ -81,21 +90,18 @@ export const BlockFormRegister = () => {
 
   return (
     <div className="transition-all duration-200 bg-white p-4 rounded-lg w-11/12 flex flex-col items-center hover:shadow-lg">
-      <TitleForm
-        text="Lorem ipsum dolor sit amet consectetur adipisicing elit. Vel animi Lorem
-        ipsum dolor sit amet."
-      />
+      <TitleForm text={t("register.title")} />
       <div
         className={`transition-all absolute w-9/12 ${
-          error?.graphQLErrors || data?.signInUser ? "top-20" : "top-0"
+          error?.graphQLErrors || data?.createUser ? "top-20" : "top-0"
         }`}
       >
         {error?.graphQLErrors.map(({ message }, i) => (
           <Notification key={i} value={message} type="error" />
         ))}
-        {data?.signInUser && (
+        {data?.createUser && (
           <Notification
-            value="Vous allez être redirigé dans un instant"
+            value={t("notifications.success.redirection")}
             type="success"
           />
         )}
@@ -114,8 +120,26 @@ export const BlockFormRegister = () => {
               <InputForm
                 id="email"
                 type="email"
-                label="Email"
-                placeholder="Email"
+                label={t("register.form.inputs.labelEmail")}
+                placeholder={t("register.form.inputs.labelEmail")}
+                field={field}
+                errors={errors}
+              />
+            );
+          }}
+        />
+
+        <Controller
+          name="lastName"
+          control={control}
+          rules={{ required: true }}
+          render={({ field }) => {
+            return (
+              <InputForm
+                id="lastName"
+                type="text"
+                label={t("register.form.inputs.labelLastName")}
+                placeholder={t("register.form.inputs.labelLastName")}
                 field={field}
                 errors={errors}
               />
@@ -131,25 +155,8 @@ export const BlockFormRegister = () => {
               <InputForm
                 id="firstName"
                 type="text"
-                label="Prénom"
-                placeholder="Prénom"
-                field={field}
-                errors={errors}
-              />
-            );
-          }}
-        />
-        <Controller
-          name="lastName"
-          control={control}
-          rules={{ required: true }}
-          render={({ field }) => {
-            return (
-              <InputForm
-                id="lastName"
-                type="text"
-                label="Nom"
-                placeholder="Nom"
+                label={t("register.form.inputs.labelFirstName")}
+                placeholder={t("register.form.inputs.labelFirstName")}
                 field={field}
                 errors={errors}
               />
@@ -165,8 +172,8 @@ export const BlockFormRegister = () => {
               <InputForm
                 id="birthDate"
                 type="date"
-                label="Date de naissance"
-                placeholder="Date de naissance"
+                label={t("register.form.inputs.labelBirthDate")}
+                placeholder={t("register.form.inputs.labelBirthDate")}
                 field={field}
                 errors={errors}
               />
@@ -182,8 +189,8 @@ export const BlockFormRegister = () => {
               <InputForm
                 id="password"
                 type="password"
-                label="Password"
-                placeholder="Password"
+                label={t("register.form.inputs.labelPassword")}
+                placeholder={t("register.form.inputs.labelPassword")}
                 field={field}
                 errors={errors}
               />
@@ -192,6 +199,7 @@ export const BlockFormRegister = () => {
         />
 
         <CheckingPassword
+          text={t("register.form.informations.password")}
           errors={errors.password}
           password={watch("password")}
         />
@@ -199,7 +207,9 @@ export const BlockFormRegister = () => {
         <ButtonForm
           style="classic"
           type="submit"
-          value={loading ? <LoadingSpinner /> : "S'enregistrer"}
+          value={
+            loading ? <LoadingSpinner /> : t("register.form.buttons.submit")
+          }
         />
       </form>
     </div>
