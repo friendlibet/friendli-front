@@ -25,6 +25,7 @@ const schema = yup
       .required("Le champ email est obligatoire"),
     password: yup.string().required("Le champ mot de passe est obligatoire"),
     description: yup.string(),
+    championshipId: yup.string().required(),
   })
   .required();
 
@@ -61,13 +62,13 @@ export const BlockGroupAdd = () => {
       name: "",
       password: "",
       description: "",
-      championshipId: "6320970397827146a4e04eb1",
+      championshipId: "",
     },
     resolver: yupResolver(schema),
   });
 
   const onSubmit = async (data: any) => {
-    const group: any = await createGroup({
+    await createGroup({
       variables: {
         name: data.name,
         password: data.password,
@@ -133,14 +134,29 @@ export const BlockGroupAdd = () => {
               );
             }}
           />
-          <select className="p-2 rounded-full bg-white border border-gray-200 outline-none text-gray-700">
-            {championships &&
-              championships.data?.getChampionships.map((el: any) => (
-                <option key={el.id} value={el.id} className="p-2">
-                  {el.name}
-                </option>
-              ))}
-          </select>
+
+          <Controller
+            name="championshipId"
+            control={control}
+            rules={{ required: true }}
+            render={({ field }) => {
+              return (
+                <select
+                  className="p-2 rounded-full bg-white border border-gray-200 outline-none text-gray-700"
+                  onChange={(val) => {
+                    field.onChange(val.target.value);
+                  }}
+                >
+                  {championships &&
+                    championships.data?.getChampionships.map((el: any) => (
+                      <option key={el.id} value={el.id} className="p-2">
+                        {el.name}
+                      </option>
+                    ))}
+                </select>
+              );
+            }}
+          />
           <Controller
             name="description"
             control={control}
